@@ -1,0 +1,8 @@
+version: '3'
+services:
+  web:
+    image: docker-react-register
+    build: .
+    command: "pm2 start server.js -i 3"
+    ports:
+      - "80:5001"
