@@ -14,12 +14,15 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 
+// https://www.npmjs.com/package/thai-smartcard-reader
+import ThaiSmartcardReader from 'thai-smartcard-reader';
+
 const URL = "https://api.egov.go.th/ws";
 const VALIDATE_PATH = "auth/validate";
 const LINKAGE_PATH = "dopa/linkage/v1/link";
-const CONSUMER_KEY = "c8fc16ef-1cbc-44a0-8a87-5b835c6bb0b7"; //get from gdx
-const AGENT_ID = "1419900053898"; //id card ของเจ้าหน้าที่ ที่เสียบบัตรอยู่
-const CONSUMER_SECRET = "QJnka0itgJr"; //get from gdx
+const CONSUMER_KEY = ""; //get from gdx หรือสอบถามที่สำนักดิจิทัลการแพทย์
+const AGENT_ID = ""; //id card ของเจ้าหน้าที่ ที่เสียบบัตรอยู่
+const CONSUMER_SECRET = ""; //get from gdx หรือสอบถามสำนักดิจิทัลการแพทย์
 const CONTENT_TYPE = "application/x-www-form-urlencoded; charset=utf-8";
 
 const useStyles = makeStyles((theme) => ({
@@ -30,8 +33,6 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
-
-  
   const [token, setToken] = useState("");
   const [citizenid, setCitizenId] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -139,7 +140,9 @@ function App() {
   };
 
   return (
+    
     <div className={classes.root}>
+      <ThaiSmartcardReader onChange={(data) => console.log(data)} />
       {isLoading && <LoadingSpinner asOverlay />}
       <form onSubmit={handleSubmit}>
         <Grid item lg={4} md={12} xl={4} xs={12}>
